@@ -1,0 +1,16 @@
+#TODO: guess visible columns
+#TODO: users: SELECT host, user, password FROM mysql.user; or trough user()
+#TODO: Find tables by a given column name: SELECT table_schema, table_name 
+ FROM information_schema.columns WHERE column_name = 'username'; find tables
+ wich contains a column named 'username'
+#TODO: Upload files
+#TODO: Read files
+#TODO: Documentation
+#TODO: use urlencode
+#TODO: Change User-Agent
+#TODO: Check if the table exists
+#TODO: Decrease number of requests to the DNS Server
+#TODO: When there is only one database, do not ask for it
+#TODO: Decrease number of threads
+#TODO: Use a proxy
+#TODO: Solve the problem when a column is shown multiple times (guess_strings)
