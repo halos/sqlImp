@@ -17,7 +17,7 @@ class sqlImp:
 	show_urls = 0
 
 	# Quote filtering activated on the page
-	quote_filte_active = False
+	quote_filter_active = False
 
 	# Number of columns in the query
 	num_col_select = 0
@@ -265,7 +265,7 @@ class sqlImp:
 			if self.show_urls >= 2:
 				print " ==> Original URL:",url
 
-			if(self.quote_filte_active):
+			if(self.quote_filter_active):
 				url=self.bypass_quote_filter(url)
 				#if self.show_urls:
 				#	print " ==> Bypassed:",url
@@ -554,7 +554,7 @@ class sqlImp:
 			if(not i % 2): # if is even
 				ret_url += url[i]
 			else:
-				ret_url += mysql_ascii2hex(url[i])
+				ret_url += self.mysql_ascii2hex(url[i])
 
 		return ret_url
 
