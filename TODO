@@ -14,3 +14,4 @@
 #TODO: Decrease number of threads
 #TODO: Use a proxy
 #TODO: Solve the problem when a column is shown multiple times (guess_strings)
+#TODO: qry_start contains a quote and quote filter is active
