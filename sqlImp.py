@@ -7,7 +7,7 @@ __author__ = 'Javier Rascón Mesa'
 # '+' simbol is always put at the beggining of the string
 # Not initialized unnecessary attributes won't be asked (eg. self.qry_begg)
 
-import urllib
+import urllib2
 import threading
 from time import sleep
 
@@ -17,7 +17,7 @@ class sqlImp:
 	show_urls = 0
 
 	# Quote filtering activated on the page
-	quote_filte_active = False
+	quote_filter_active = False
 
 	# Number of columns in the query
 	num_col_select = 0
@@ -265,7 +265,7 @@ class sqlImp:
 			if self.show_urls >= 2:
 				print " ==> Original URL:",url
 
-			if(self.quote_filte_active):
+			if(self.quote_filter_active):
 				url=self.bypass_quote_filter(url)
 				#if self.show_urls:
 				#	print " ==> Bypassed:",url
@@ -275,7 +275,7 @@ class sqlImp:
 			if self.show_urls >= 1:
 				print " ==> Final URL:",url
 
-			page = urllib.urlopen(url).read()
+			page = urllib2.urlopen(url).read()
 
 			return page
 
@@ -353,7 +353,7 @@ class sqlImp:
 			if columns=='*':
 				columns=self.get_asterisk(table)
 
-			columns_aux = 'count(distinct+'
+			columns_aux = '+count(distinct+'
 
 			for i in columns:
 				columns_aux += i+','
@@ -554,7 +554,7 @@ class sqlImp:
 			if(not i % 2): # if is even
 				ret_url += url[i]
 			else:
-				ret_url += mysql_ascii2hex(url[i])
+				ret_url += self.mysql_ascii2hex(url[i])
 
 		return ret_url
 
@@ -729,4 +729,16 @@ class sqlImp:
 			output += hex(ord(i))[2: 4]
 
 		return output
+		
+	def set_proxy(self, url):
+		""" Function doc
+	
+		Params:
+	
+			url(str): URL of the proxy to be set
+		"""
+		
+		proxy_support = urllib2.ProxyHandler({'http': url})
+		opener = urllib2.build_opener(proxy_support)
+		urllib2.install_opener(opener)
 
