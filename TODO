@@ -12,6 +12,6 @@
 #TODO: Decrease number of requests to the DNS Server
 #TODO: When there is only one database, do not ask for it
 #TODO: Decrease number of threads
-#TODO: Use a proxy
+#TODO: Improve proxy use to allow changing it without user intervention
 #TODO: Solve the problem when a column is shown multiple times (guess_strings)
-#TODO: qry_start contains a quote and quote filter is active
+#TODO: if qry_start is a quote (') and quote_filter is true, then the library fails

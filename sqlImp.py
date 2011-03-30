@@ -7,7 +7,7 @@ __author__ = 'Javier Rascón Mesa'
 # '+' simbol is always put at the beggining of the string
 # Not initialized unnecessary attributes won't be asked (eg. self.qry_begg)
 
-import urllib
+import urllib2
 import threading
 from time import sleep
 
@@ -275,7 +275,7 @@ class sqlImp:
 			if self.show_urls >= 1:
 				print " ==> Final URL:",url
 
-			page = urllib.urlopen(url).read()
+			page = urllib2.urlopen(url).read()
 
 			return page
 
@@ -353,7 +353,7 @@ class sqlImp:
 			if columns=='*':
 				columns=self.get_asterisk(table)
 
-			columns_aux = 'count(distinct+'
+			columns_aux = '+count(distinct+'
 
 			for i in columns:
 				columns_aux += i+','
@@ -729,4 +729,16 @@ class sqlImp:
 			output += hex(ord(i))[2: 4]
 
 		return output
+		
+	def set_proxy(self, url):
+		""" Function doc
+	
+		Params:
+	
+			url(str): URL of the proxy to be set
+		"""
+		
+		proxy_support = urllib2.ProxyHandler({'http': url})
+		opener = urllib2.build_opener(proxy_support)
+		urllib2.install_opener(opener)
 
